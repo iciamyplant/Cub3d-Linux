@@ -20,8 +20,8 @@
   - 3  :  Git
 
 # I - Qu'est ce que Cub3d ?
-### 1.  Le sujet
-### 2. Le raycasting dans la théorie
+### 1 : Le sujet
+### 2 :  Le raycasting dans la théorie
 
 # II - Comment ai-je fait Cub3d ?
 ### 1. Parser le fichier .cub
