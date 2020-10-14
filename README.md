@@ -15,9 +15,9 @@
   - 10 :  Les derniers petits éléments
   - 11 :  Les leaks
 ### III - Les trucs utiles que j'ai appris
-  - 1  :  Techniques de débogage
-  - 2  :  VIM
-  - 3  :  Git
+  - 1  Techniques de débogage
+  - 2  VIM
+  - 3  Git
 
 # I - Qu'est ce que Cub3d ?
 ### 1 : Le sujet
