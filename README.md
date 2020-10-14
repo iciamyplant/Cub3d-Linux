@@ -19,7 +19,7 @@
   -  VIM
   -  Git
 
-# I - Qu'est ce que Cub3d ?
+# I - Qu'est ce que Cub3d ? 11 étapes
 ### Le sujet
 ### Le raycasting dans la théorie
 
