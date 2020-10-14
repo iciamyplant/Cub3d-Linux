@@ -3,9 +3,9 @@
   -  Le sujet
   -  Le raycasting dans la théorie
 ### II - Comment ai-je fait Cub3d ? 11 étapes
-  - 1  :  Parser le fichier .cub
-  - 2  :  Comprendre la minilibx et imprimer des carrés et des triangles
-  - 3  :  Créer la minimap pour apprendre à utiliser la Minilibx
+  - étape 1  :  Parser le fichier .cub
+  - étape 2  :  Comprendre la minilibx et imprimer des carrés et des triangles
+  - étape 3  :  Créer la minimap pour apprendre à utiliser la Minilibx
   - 4  :  Savoir récupérer les keys et les utiliser dans la minimap
   - 5  :  Le raycasting sans textures dans la pratique
   - 6  :  La couleur du sol et du plafond
