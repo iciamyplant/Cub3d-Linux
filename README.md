@@ -25,6 +25,7 @@
 
 # II - Comment ai-je fait Cub3d ? 11 étapes
 ## étape 1  : Parsing
+#### A faire :
 - parser dans un tableau de char à double entrée (il est également possible de parser dans un tableau de int, mais j’ai préféré la solution des char).
 - checker que la map soit entourée de murs
 - a chaque fois faire passer par la fonction qui vérifie qu'il n'y a pas d'autres caractères que 0,1,2
@@ -36,7 +37,15 @@
 - malloquer ensuite chaine de caractère par chaîne de caractères dans le tableau
 - remplacer tous les espaces par des murs + ajouter des murs au bout pour que la taille de la chaîne soit suffisamment grande
 
-Tous les trucs tricky auxquels il faut penser pour le parsing de tout sauf la map :
+### Petit rappel de comment on malloc un char** :
+  ```
+  char **liste; 
+  char *ptr
+  liste = malloc(sizeof(char*) * nbrdechaines)
+  liste[i] = malloc(sizeof(char) * ft_strlen(str))
+  ```
+
+#### Tous les trucs tricky auxquels il faut penser pour le parsing de tout sauf la map :
 - il manque quelque chose (R, NO, SO, S…)
 - deux fois la même chose (deux R, deux NO..)
 - résolution avec des int plus grands que int max
@@ -48,7 +57,7 @@ Tous les trucs tricky auxquels il faut penser pour le parsing de tout sauf la ma
 - F ou C avec un chiffre supérieur à 255
 - un identifiant mauvais genre (X au lieu de R, ou E au lieu de EA)
 
-Tous les trucs tricky auxquels il faut penser pour le parsing de la map :
+#### Tous les trucs tricky auxquels il faut penser pour le parsing de la map :
 - une ligne vide dans la map : “Sauf pour la map elle-même, les informations de chaque élément peuvent être séparées par un ou plusieurs espace(s)”.
 - un caractère incorrect dans la map, genre un 4
 - une map ouverte
@@ -57,7 +66,7 @@ Tous les trucs tricky auxquels il faut penser pour le parsing de la map :
 - il n’y a pas de map
 - pas de joueur ou plusieurs joueurs
 
-Tous les trucs tricky auxquels il faut penser à propos des arguments :
+### Tous les trucs tricky auxquels il faut penser à propos des arguments :
 - nombre d’arguments invalide : moins de 2 arguments ou plus de 3
 - 3 arguments mais le 3ème n’est pas --save
 - 2 arguments mais un fichier lol.cub.c
