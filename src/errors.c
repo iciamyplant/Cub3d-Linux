@@ -25,7 +25,7 @@ void	ft_verify_errors(t_recup *recup)
 	if (recup->lignevide == 1)
 		ft_error(recup, "Ligne vide dans la map\n");
 	if (recup->wrongcharmap == 2)
-		ft_error(recup, "Charactere incorrect dans la map\n");
+		ft_error(recup, "Caractere incorrect dans la map\n");
 }
 
 void	ft_error2(t_recup *recup)

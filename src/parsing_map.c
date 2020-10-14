@@ -73,7 +73,7 @@ int		ft_is_map(char *str, t_recup *recup)
 	i = 0;
 	if (!str)
 		return (0);
-	if (ft_charinstr(str, '1') == 1)
+	if (ft_charinstr(str, '1') == 1 || ft_charinstr(str, '0') == 1)
 	{
 		while (str[i] != '\0')
 		{

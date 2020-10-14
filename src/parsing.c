@@ -49,6 +49,8 @@ void	ft_parsing(char *fichier, t_recup *recup)
 
 	ret = 1;
 	str = NULL;
+	if ((fd = open(fichier, O_DIRECTORY)) != -1)
+		ft_error(recup, "Invalide : is a directory\n");
 	if ((fd = open(fichier, O_RDONLY)) == -1)
 		ft_error(recup, "Fichier .cub invalide\n");
 	recup->erreur = 0;
