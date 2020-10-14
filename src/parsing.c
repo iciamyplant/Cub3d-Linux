@@ -104,5 +104,5 @@ int		main(int argc, char **argv)
 		ft_cub(argv[1], &recup);
 	}
 	else
-		write(1, "Error\nNombre d'arguments invalide\n", 35);
+		write(1, "Error\nArguments invalides\n", 30);
 }

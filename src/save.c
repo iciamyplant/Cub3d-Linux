@@ -65,7 +65,7 @@ void	ft_save(t_recup *recup)
 	ft_error(recup, "Non jrigole --save ok\n");
 }
 
-int	ft_check_save(char *str)
+int		ft_check_save(char *str)
 {
 	int	i;
 
@@ -80,7 +80,7 @@ int	ft_check_save(char *str)
 		return (0);
 }
 
-int	ft_nb_virgule(const char *str)
+int		ft_nb_virgule(const char *str)
 {
 	int	i;
 	int	j;
