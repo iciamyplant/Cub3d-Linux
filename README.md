@@ -26,8 +26,8 @@
 # II - Comment ai-je fait Cub3d ? 11 étapes
 ## étape 1  : Parsing
 #### A faire :
-- parser dans un tableau de char à double entrée (il est également possible de parser dans un tableau de int, mais j’ai préféré la solution des char).
-- checker que la map soit entourée de murs
+- [x] : parser dans un tableau de char à double entrée (il est également possible de parser dans un tableau de int, mais j’ai préféré la solution des char).
+- [x] : checker que la map soit entourée de murs
 - a chaque fois faire passer par la fonction qui vérifie qu'il n'y a pas d'autres caractères que 0,1,2
 - a chaque fois faire passer par la fonction qui vérifie si y a la position dedans si y a N,S,E,W et s’il y a la position remplacer par 0 et retenir dans une variable ou c’est et la direction
 - faire un tableau de chaînes de caractères
