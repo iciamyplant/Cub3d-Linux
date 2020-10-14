@@ -1,6 +1,4 @@
-# Cub3d---Linux
-
-# Plan
+# Plan :
 I - Qu'est ce que Cub3d ?
 1. Le sujet
 2. Le raycasting dans la théorie
