@@ -1,8 +1,9 @@
 # Plan :
 **I - Qu'est ce que Cub3d ?**
+  ```
     1. Le sujet
     2. Le raycasting dans la théorie
-
+  ```
 **II - Comment ai-je fait Cub3d ?**
 1. Parser le fichier .cub
 2. Comprendre la minilibx et imprimer des carrés et des triangles
