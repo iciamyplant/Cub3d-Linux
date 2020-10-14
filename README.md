@@ -19,11 +19,11 @@
   -  VIM
   -  Git
 
-# I - Qu'est ce que Cub3d ? 11 étapes
+# I - Qu'est ce que Cub3d ? 
 ### Le sujet
 ### Le raycasting dans la théorie
 
-# II - Comment ai-je fait Cub3d ?
+# II - Comment ai-je fait Cub3d ? 11 étapes
 ## étape 1  : Parser le fichier .cub
 ## étape 2  : Comprendre la minilibx et imprimer des carrés et des triangles
 ## étape 3  : Créer la minimap pour apprendre à utiliser la Minilibx
