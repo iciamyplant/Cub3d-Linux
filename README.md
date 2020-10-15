@@ -21,8 +21,16 @@
 
 # I - Qu'est ce que Cub3d ?
 ### Le sujet
-### Le raycasting dans la théorie
-J'ai commencé par regarder cette vidéo : https://www.youtube.com/watch?v=js7HW65MmNw&list=PL0H9-oZl_QOHM34HvD3DiGmwmj5X7GvTW
+Ce projet est inspiré du jeu Wolfenstein 3D. Mondialement connu, Wolfenstein 3D est considéré comme le premier FPS (c'est à dire un jeu de tire à la première personne) jamais développé. 
+
+- L'objectif est de faire une vue dynamique (qui s'adapte au cours du temps selon les mouvements du joueur)
+- et subjective (on voit du point de vue des yeux du personnage)
+- au sein d’un labyrinthe ayant une représentation graphique 3D "réalistique", dans lequel on doit trouver son chemin. 
+
+Ce projet permet d'explorer la technique du ray-casting. (Le lancer de rayons est une technique de rendu capable de créer une perspective tridimensionnelle à partir d'une carte bidimensionnelle).
+
+### Appréhender le projet
+J'ai commencé par regarder cette vidéo pour avoir une petite idée du principe : https://www.youtube.com/watch?v=js7HW65MmNw&list=PL0H9-oZl_QOHM34HvD3DiGmwmj5X7GvTW
 
 # II - Comment ai-je fait Cub3d ? 11 étapes
 ## étape 1  : Le parsing
@@ -372,9 +380,6 @@ https://www.commentcamarche.net/contents/1200-bmp-format-bmp
 - Il y a une erreur
 - Il y a le --save
 - Si y a une erreur de malloc dans une ligne de la map : il faut pouvoir free les autres lignes
-
-
-
 
 
 # III - Les trucs utiles que j'ai appris
