@@ -44,33 +44,33 @@
   liste = malloc(sizeof(char*) * nbrdechaines)
   liste[i] = malloc(sizeof(char) * ft_strlen(str))
   ```
+### Tous les trucs tricky auxquels il faut penser à propos des arguments :
+- [x] : Nombre d’arguments invalide : moins de 2 arguments ou plus de 3
+- [x] : 3 arguments mais le 3ème n’est pas --save
+- [x] : 2 arguments mais un fichier lol.cub.c
+- [x] : Fichier .cub n’existe pas
+- [x] : Le .cub est un directory
+
 ### Tous les trucs tricky auxquels il faut penser pour le parsing de tout sauf la map :
 - [x] : Il manque qqe chose (R, NO, SO, S…)
-- Deux fois la même chose (deux R, deux NO..)
-- Résolution avec des int plus grands que int max
-résolution avec une virgule ou un autre caractère dedans
-résolution avec 3 chiffres, ou un seul, ou un 0
-F ou C avec un chiffre qui manque, ou un chiffre en trop
-F ou C avec une virgule en moins ou une virgule en trop 
-F ou C avec un int supérieur à int max : doit renvoyer une erreur
-F ou C avec un chiffre supérieur à 255
-un identifiant mauvais genre (X au lieu de R, ou E au lieu de EA)
+- [x] : Deux fois la même chose (deux R, deux NO..)
+- [x] : Résolution avec des int plus grands que int max
+- [x] : Résolution avec une virgule ou un autre caractère dedans
+- [x] : Résolution avec 3 chiffres, ou un seul, ou un 0
+- [x] : F ou C avec un chiffre qui manque, ou un chiffre en trop
+- [x] : F ou C avec une virgule en moins ou une virgule en trop 
+- [x] : F ou C avec un int supérieur à int max : doit renvoyer une erreur
+- [x] : F ou C avec un chiffre supérieur à 255
+- [x] : Un identifiant mauvais genre (X au lieu de R, ou E au lieu de EA)
 
-tous les trucs tricky auxquels il faut penser pour le parsing de la map :
-une ligne vide dans la map : “Sauf pour la map elle-même, les informations de chaque élément peuvent être séparées par un ou plusieurs espace(s)”.
-un caractère incorrect dans la map, genre un 4
-une map ouverte
-“Les espaces sont une partie valable de la carte, c’est à vous de les gérer correctement” : pour moi les espaces vides sont des murs.
-la map est avant un autre élément 
-il n’y a pas de map
-pas de joueur ou plusieurs joueurs
-
-Tous les trucs tricky auxquels il faut penser à propos des arguments :
-nombre d’arguments invalide : moins de 2 arguments ou plus de 3
-3 arguments mais le 3ème n’est pas --save
-2 arguments mais un fichier lol.cub.c
-fichier .cub n’existe pas
-le .cub est un directory
+### Tous les trucs tricky auxquels il faut penser pour le parsing de la map :
+- [x] : Une ligne vide dans la map : “Sauf pour la map elle-même, les informations de chaque élément peuvent être séparées par un ou plusieurs espace(s)"
+- [x] : Un caractère incorrect dans la map, genre un 4
+- [x] : Une map ouverte
+- [x] : “Les espaces sont une partie valable de la carte, c’est à vous de les gérer correctement” : pour moi les espaces vides sont des murs
+- [x] : La map est avant un autre élément 
+- [x] : Il n’y a pas de map
+- [x] : Pas de joueur ou plusieurs joueurs
 
 
 
