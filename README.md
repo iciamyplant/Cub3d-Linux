@@ -82,7 +82,9 @@
 
 ### Ecrire les premiers pixels : 
 J'ai utilisé cette documentation au début : https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
-Toutes les fonctions sont ici : 
+
+Toutes la doc des fonctions sont ici : https://github.com/qst0/ft_libgfx
+
 D'abord tu commence par mlx_init
   ```
 mlx = mlx_init();
