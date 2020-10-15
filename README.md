@@ -120,8 +120,8 @@ D'abord on crée notre image :
   ```
 mlx_new_image(mlx, 1920, 1080);
   ```
-Comment écrire exactement les pixels dans cette image ? On va récupérer l'adresse mémoire sur laquelle mettre nos pixels avec mlx_get_data_addr. Pour comprendre comment écrire des pixels dans une image je te conseille très fortement d'aller voir : https://github.com/keuhdall/images_example/blob/master/README.md. Ensuite tu vas pouvoir mettre tes pixels dans l'image. (Merci à grezette)
-Formule en char :  X position * 4 + 4 * Line size * Y position
+Comment écrire exactement les pixels dans cette image ? On va récupérer l'adresse mémoire sur laquelle mettre nos pixels avec mlx_get_data_addr. Pour comprendre comment écrire des pixels dans une image je te conseille très fortement d'aller voir : https://github.com/keuhdall/images_example/blob/master/README.md. Ensuite tu vas pouvoir mettre tes pixels dans l'image. 
+Formule en char :  X position * 4 + 4 * Line size * Y position. (Merci à grezette)
 
   ```
 typedef struct		s_data
