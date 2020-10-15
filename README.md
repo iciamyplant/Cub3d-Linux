@@ -326,6 +326,7 @@ Super doc sur les pointeurs : https://www.rocq.inria.fr/secret/Anne.Canteaut/COU
 - int *p;
 - int i;
 - p = &i;
+
 --> ici si on écrit *p = 0; on change la valeur de i
 
 
