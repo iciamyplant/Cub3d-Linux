@@ -325,14 +325,7 @@ https://www.rocq.inria.fr/secret/Anne.Canteaut/COURS_C/chapitre3.html
 
 - int *p;
 - int i;
-p = &i
+- p = &i
 | Attempt | #1  | #2  |
 | :---:   | :-: | :-: |
 | Seconds | 301 | 283 |
-
-
-   | addre | valeur | 
---- | --- | --- | 
-i | 48310 | 3 |
---- | --- | --- | 
-p | 48308 | 48310 | 
