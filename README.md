@@ -18,10 +18,12 @@
  - Techniques de débogage
  - VIM
  - Git
+ - Rappels sur les pointeurs
 
 # I - Qu'est ce que Cub3d ?
 ### Le sujet
 ### Le raycasting dans la théorie
+J'ai commencé par regarder cette vidéo : https://www.youtube.com/watch?v=js7HW65MmNw&list=PL0H9-oZl_QOHM34HvD3DiGmwmj5X7GvTW
 
 # II - Comment ai-je fait Cub3d ? 11 étapes
 ## étape 1  : Le parsing
@@ -85,37 +87,60 @@ J'ai utilisé cette documentation au début : https://harm-smits.github.io/42doc
 
 Toutes la doc des fonctions sont ici : https://github.com/qst0/ft_libgfx
 
-D'abord tu commence par mlx_init
+D'abord tu commence par mlx_init. Ensuite tu vas créer une fenêtre avec mlx_new_window. Enfin tu mets mlx_loop pour lancer le rendu de la fenêtre.
   ```
 mlx = mlx_init();
-  ```
-Ensuite tu vas créer une fenêtre avec mlx_new_window
-  ```
 mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-  ```
-Enfin tu mets mlx_loop pour lancer le rendu de la fenêtre
-  ```
 mlx_loop(mlx);
   ```
 - [x] : Tu verras une fenêtre qui s'appelle Hello World
 
-On va écrire nos premiers pixels directement dans la fenêtre avec mlx_pixel_put
+Ensuite on va écrire nos premiers pixels directement dans la fenêtre avec une fonction qu'on va crée que j'appelle my_mlx_pixel_put. C'est la fonction utilisée dans la doc42 citée plus haut. La fonction my_mlx_pixel_put est un peu cheum mais c'est juste pour imprimer les premiers pixels, on verra après le pourquoi du comment.
   ```
-mlx_pixel_put (void *mlx_ptr, void *win_ptr, int x, int y, int color );
+typedef struct  s_data {
+    void        *img;
+    char        *addr;
+    int         bits_per_pixel;
+    int         line_length;
+    int         endian;
+}               t_data;
+
+void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+    char    *dst;
+
+    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+    *(unsigned int*)dst = color;
+}
   ```
-    
+- [x] : Tu verras des pixels dans ta fenêtre Hello World
+
 ### Utiliser les images :
 Mais imprimer pixel par pixel dans la fenêtre c'est beaucoup trop long, donc on va utiliser des images.
 D'abord on crée notre image :
   ```
 mlx_new_image(mlx, 1920, 1080);
   ```
-Comment écrire exactement les pixels dans cette image ? On va récupérer l'adresse mémoire sur laquelle mettre nos pixels avec mlx_get_data_addr.
+Comment écrire exactement les pixels dans cette image ? On va récupérer l'adresse mémoire sur laquelle mettre nos pixels avec mlx_get_data_addr. Pour comprendre comment écrire des pixels dans une image je te conseille très fortement d'aller voir : https://github.com/keuhdall/images_example/blob/master/README.md. Ensuite tu vas pouvoir mettre tes pixels dans l'image.
   ```
-mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+typedef struct		s_data
+{
+	void			*mlx_ptr;
+	void			*mlx_win;
+	void			*img;
+	int				*addr;
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+}					t_data;
+ 
+data.addr = (int *)mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
+data.addr[y * recup->data.line_length / 4 + x] = color;
   ```
 
 ### Les événements (= quand on clique sur une touche par exemple) :
+Documentation sur les hook : https://gist.github.com/KokaKiwi/4052375
+
 --> La Minilibx dispose en fait d'une fonction nommée "mlx_hook" permettant d'ajouter une fonction de gestion d'évènement à son code. Tous les hooks de MiniLibX ne sont rien de plus qu'une fonction qui est appelée chaque fois qu'un événement est déclenché.
   ```
 int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param);
@@ -126,8 +151,14 @@ int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param
  - param: Un paramètre divers que vous pouvez passer à la fonction qui gère l'événement.
  - funct : la fonction qu’on lance quand l'évènement se passe. Il y a différents types de fonctions (selon si c’est un mouvement de la souris, un keypress etc.) 
 
-### La fonction mlx_loop_hook
+### La fonction mlx_loop_hook et mlx_put_image_to_window
+"The syntax for the mlx_loop_hook () function is identical to mlx_hook, but the given function will be called when no event occurs."
+C'est à dire que la fonction qu'on appelle dans mlx_loop_hook se lance en continu. Penser à mettre mlx_put_image_to_window dans la fonction que vous mettez dans loop_hook, sinon l'image ne s'imprime pas.
+  ```
+int mlx_loop_hook ( void *mlx_ptr, int (*funct_ptr)(), void *param );
+int mlx_put_image_to_window ( void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y );
 
+  ```
 
 ## étape 3  : La Minimap
 ### A faire :
@@ -142,7 +173,7 @@ A chaque fois la fonction qui imprime la minimap dans :
 mlx_loop_hook();
 mlx_put_image_to_window
   ```
-Documentation sur loop hook : https://gist.github.com/KokaKiwi/4052375
+
 mlx_put_image_to_window : à mettre dans la fonction qui imprime la minimap qui loop !
 
 
@@ -187,3 +218,4 @@ Mac qwerty :
 
 
 # III - Les trucs utiles que j'ai appris
+
