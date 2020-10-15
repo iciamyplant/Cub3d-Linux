@@ -8,12 +8,11 @@
  - étape 3  : Créer la minimap pour apprendre à utiliser la Minilibx
  - étape 4  : Savoir récupérer les keys et les utiliser dans la minimap
  - étape 5  : Le raycasting sans textures dans la pratique
- - étape 6  : La couleur du sol et du plafond
- - étape 7  : Ajouter les textures
- - étape 8  : Les Sprites
- - étape 9  : --save
- - étape 10 : Les derniers petits éléments
- - étape 11 : Les leaks
+ - étape 6  : Ajouter les textures
+ - étape 7  : Les Sprites
+ - étape 8  : --save
+ - étape 9 : Les derniers petits éléments
+ - étape 10 : Les leaks
 #### III - Les trucs utiles que j'ai appris
  - Techniques de débogage
  - VIM
@@ -122,6 +121,8 @@ D'abord on crée notre image :
 mlx_new_image(mlx, 1920, 1080);
   ```
 Comment écrire exactement les pixels dans cette image ? On va récupérer l'adresse mémoire sur laquelle mettre nos pixels avec mlx_get_data_addr. Pour comprendre comment écrire des pixels dans une image je te conseille très fortement d'aller voir : https://github.com/keuhdall/images_example/blob/master/README.md. Ensuite tu vas pouvoir mettre tes pixels dans l'image.
+Formule en char :  X position * 4 + 4 * Line size * Y position
+
   ```
 typedef struct		s_data
 {
@@ -213,8 +214,62 @@ Mac qwerty :
 - define RIGHT_D_D			2
 - define LEFT_A_Q			0
 
-## étape 5  : Les raycasting
+## étape 5  : Le raycasting
+### La théorie :
+Je ne sais pas si c'est la meilleure technique mais j'ai commencé par suivre des tutos en javascript : https://courses.pikuma.com/courses/take/raycasting/lessons/15903104-an-overview-of-the-raycasting-algorithm. Ca prend du temps, mais ça s'est avéré utile par la suite. Ces tutos font des rappels de maths et expliquent de façon claire ce qu'on va faire. 
+
+le principe de base est le suivant :
+- j’envoie des rayon de gauche à droite depuis la position du joueur. Sachant que au lieu de lancer un rayon pour chaque pixel nous allons lancer un rayon par colonne. On lance autant de rayons que rx (résolution x).
+- plus le rayon met du temps à atteindre le mur, plus il est loin.
+- plus il est loin plus la colonne de pixels est petite.
+
+### La pratique :
+Je suis ensuite passée sur la doc de Lodev : https://lodev.org/cgtutor/raycasting.html. Après les tutos en javascript et les tentatives de faire le raycasting seule j'ai pu bien comprendre la doc de Lodev. Avant de commencer Lodev, je te conseille de regarder cette vidéo sur les vecteurs : https://www.youtube.com/watch?v=gID_FKfncZI.
+
+
+- détecter les murs :
+Pour savoir si un rayon touche un mur on doit vérifier les points par lesquels passe le rayon dans la map. Pour optimiser, on va faire la vérification uniquement lorsqu'il atteint une intersection entre deux cases. Nous allons essayer de trouver chaque point d’intersection (A,B,C,D,E,F) entre la map et le rayon et vérifier si il s’agit d’un mur ou pas. La meilleure solution pour optimiser les calculs semble être de vérifier les intersections verticales et horizontales séparément
+
+## étape 6  : Les textures
+Penser à protéger sa fonction si le xpm est mauvais !
+
+## étape 9  : Derniers petits éléments
+- quitter le programme proprement quand j’appuie sur la croix
+  ```
+  mlx_hook(recup->data.mlx_win, 33, 1L << 17, ft_exit, recup);
+  ```
+- si la taille de la fenêtre est supérieure à celle de l'écran, la taille de la fenêtre doit être celle de l'écran : fonction spéciale mlx_get_sreen_size sur Linux.
+  ```
+  mlx_get_screen_size(recup->data.mlx_ptr, &recup->screenx, &recup->screeny);
+  recup->rx = (recup->rx > recup->screenx) ? recup->screenx : recup->rx;
+  recup->ry = (recup->ry > recup->screeny) ? recup->screeny : recup->ry;
+  ```
+
+## étape 10  : Les leaks
+### Outils :
+- Les leaks : utiliser -fsanitize=leak, et valgrind
+- Pour utiliser valgrind : valgrind ./executable map.cub
+- Sache que le definitely lost doit etre a 0. Still reachable doit être à environ 100 blocks. Pourquoi still reachable ? Car la minilibx crée des leaks. Pour voir si le leak est chez toi ou dans la minilibx : **valgrind --leak-check=full --show-leak-kinds=all ./executable description.cub**. Le petite technique c’est de rajouter 2> leak.log pour que tous les leaks soient dans un fichier, pour plus de lisibilité **valgrind --leak-check=full --show-leak-kinds=all ./executable description.cub 2> leak.log** (merci à alienard et ljurdant)
+- Pour free quelque chose, utiliser la condition if(str) existe, donc pour cela il faut initialiser les variables que l’on free
+- JAMAIS valgrind + fsanitize
+
+### Les erreurs que j’ai pu avoir
+- Free deux fois
+- Free sans malloquer
+- Free sans initialiser
+- Ecrire des pixels en dehors de l’image
+
+### Tout malloc doit etre free meme lorsque :
+- Il y a une erreur
+- Il y a le --save
+- Si y a une erreur de malloc dans une ligne de la map : il faut pouvoir free les autres lignes
 
 
 # III - Les trucs utiles que j'ai appris
+### Techniques de débogage
+Debugger un bus error : **lldb ./executable** (attention, j’ai eu plusieurs fois bus error alors que c'était un segfault (Merci à lothieve)
+Les segfaults : utiliser **-fsanitize=address** après tes flags dans ton Makefile. Si fsanitize n’affiche rien, tu n’as pas d’erreur.
 
+### VIM
+### Git
+### Rappels sur les pointeurs
