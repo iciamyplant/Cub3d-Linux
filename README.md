@@ -120,7 +120,7 @@ D'abord on crée notre image :
   ```
 mlx_new_image(mlx, 1920, 1080);
   ```
-Comment écrire exactement les pixels dans cette image ? On va récupérer l'adresse mémoire sur laquelle mettre nos pixels avec mlx_get_data_addr. Pour comprendre comment écrire des pixels dans une image je te conseille très fortement d'aller voir : https://github.com/keuhdall/images_example/blob/master/README.md. Ensuite tu vas pouvoir mettre tes pixels dans l'image.
+Comment écrire exactement les pixels dans cette image ? On va récupérer l'adresse mémoire sur laquelle mettre nos pixels avec mlx_get_data_addr. Pour comprendre comment écrire des pixels dans une image je te conseille très fortement d'aller voir : https://github.com/keuhdall/images_example/blob/master/README.md. Ensuite tu vas pouvoir mettre tes pixels dans l'image. (Merci à grezette)
 Formule en char :  X position * 4 + 4 * Line size * Y position
 
   ```
@@ -233,6 +233,43 @@ Pour savoir si un rayon touche un mur on doit vérifier les points par lesquels 
 ## étape 6  : Les textures
 Penser à protéger sa fonction si le xpm est mauvais !
 
+## étape 7  : Les Sprites
+## étape 8  : --save
+https://www.commentcamarche.net/contents/1200-bmp-format-bmp
+
+  ```
+ void	ft_header(t_recup *recup, int fd)
+{
+	int	tmp;
+
+	write(fd, "BM", 2); //La signature (sur 2 octets), indiquant qu'il s'agit d'un fichier BMP à l'aide des deux caractères. 
+			    // BM, 424D en hexadécimal, indique qu'il s'agit d'un Bitmap Windows.
+	tmp = 14 + 40 + 4 * recup->rx * recup->ry; //La taille totale du fichier en octets (codée sur 4 octets)
+	write(fd, &tmp, 4);
+	tmp = 0;
+	write(fd, &tmp, 2); 
+	write(fd, &tmp, 2); 
+	tmp = 54;
+	write(fd, &tmp, 4);
+	tmp = 40;
+	write(fd, &tmp, 4);
+	write(fd, &recup->rx, 4); //La largeur de l'image (sur 4 octets), c'est-à-dire le nombre de pixels horizontalement (en anglais width)
+	write(fd, &recup->ry, 4); //La hauteur de l'image (sur 4 octets), c'est-à-dire le nombre de pixels verticalement (en anglais height)
+	tmp = 1;
+	write(fd, &tmp, 2); //Le nombre de plans (sur 2 octets). Cette valeur vaut toujours 1
+	write(fd, &recup->data.bits_per_pixel, 2); //La profondeur de codage de la couleur(sur 2 octets), c'est-à-dire le nombre de bits utilisés 
+			    		           //pour coder la couleur. Cette valeur peut-être égale à 1, 4, 8, 16, 24 ou 32
+	tmp = 0;
+	write(fd, &tmp, 4); //La méthode de compression (sur 4 octets). Cette valeur vaut 0 lorsque l'image n'est pas compressée
+	write(fd, &tmp, 4);
+	write(fd, &tmp, 4);
+	write(fd, &tmp, 4);
+	write(fd, &tmp, 4);
+	write(fd, &tmp, 4);
+}
+  ```
+ Attention : pour que le --save fonctionne il faut qu'il passe dans les fonctions du raycasting mais qu'il exit directement après avoir la première vue.
+
 ## étape 9  : Derniers petits éléments
 - quitter le programme proprement quand j’appuie sur la croix
   ```
@@ -249,7 +286,7 @@ Penser à protéger sa fonction si le xpm est mauvais !
 ### Outils :
 - Les leaks : utiliser -fsanitize=leak, et valgrind
 - Pour utiliser valgrind : valgrind ./executable map.cub
-- Sache que le definitely lost doit etre a 0. Still reachable doit être à environ 100 blocks. Pourquoi still reachable ? Car la minilibx crée des leaks. Pour voir si le leak est chez toi ou dans la minilibx : **valgrind --leak-check=full --show-leak-kinds=all ./executable description.cub**. Le petite technique c’est de rajouter 2> leak.log pour que tous les leaks soient dans un fichier, pour plus de lisibilité **valgrind --leak-check=full --show-leak-kinds=all ./executable description.cub 2> leak.log** (merci à alienard et ljurdant)
+- Sache que le definitely lost doit etre a 0. Still reachable doit être à environ 100 blocks. Pourquoi still reachable ? Car la minilibx crée des leaks. Pour voir si le leak est chez toi ou dans la minilibx : **valgrind --leak-check=full --show-leak-kinds=all ./executable description.cub**. Le petite technique c’est de rajouter 2> leak.log pour que tous les leaks soient dans un fichier, pour plus de lisibilité **valgrind --leak-check=full --show-leak-kinds=all ./executable description.cub 2> leak.log** (Merci à alienard et ljurdant)
 - Pour free quelque chose, utiliser la condition if(str) existe, donc pour cela il faut initialiser les variables que l’on free
 - JAMAIS valgrind + fsanitize
 
@@ -267,9 +304,20 @@ Penser à protéger sa fonction si le xpm est mauvais !
 
 # III - Les trucs utiles que j'ai appris
 ### Techniques de débogage
-Debugger un bus error : **lldb ./executable** (attention, j’ai eu plusieurs fois bus error alors que c'était un segfault (Merci à lothieve)
-Les segfaults : utiliser **-fsanitize=address** après tes flags dans ton Makefile. Si fsanitize n’affiche rien, tu n’as pas d’erreur.
+- Debugger un bus error : **lldb ./executable** (attention, j’ai eu plusieurs fois bus error alors que c'était un segfault (Merci à lothieve)
+- Les segfaults : utiliser **-fsanitize=address** après tes flags dans ton Makefile. Si fsanitize n’affiche rien, tu n’as pas d’erreur.
 
-### VIM
+### Utils vim et terminql
+- vimrc
+- dd puis p pour coller
+- yy puis p
+- ctrl L pour clear
+- trouver tous mes mallocs ou tous les endroits ou apparaissent une fonction : grep malloc src/* (merci alouis)
+- commande shift g pour quand le finder s’ouvre et que tu cherches un fichier 
+
 ### Git
+- git branch = liste les branches qui existent http://www.letuyau.net/2012/08/git-pusher-une-branche-sur-un-repository-distant/?fbclid=IwAR1xznNq8ni4ik_GNm316yw-S1_W-zIJ6PsBbbgLsBICtnX8ez0XZNmoz6A
+- git push origin *nom branche*
+- git checkout *nombranche* = basculer sur une branche déjà existante
+
 ### Rappels sur les pointeurs
