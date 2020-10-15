@@ -1,7 +1,7 @@
 ### Plan :
 #### I - Qu'est ce que Cub3d ?
  - Le sujet
- - Le raycasting dans la théorie
+ - Appréhender le projet
 #### II - Comment ai-je fait Cub3d ? 11 étapes
  - étape 1  : Parser le fichier .cub
  - étape 2  : Comprendre la minilibx et imprimer des carrés et des triangles
