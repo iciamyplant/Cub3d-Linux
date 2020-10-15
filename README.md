@@ -157,7 +157,6 @@ C'est à dire que la fonction qu'on appelle dans mlx_loop_hook se lance en conti
   ```
 int mlx_loop_hook ( void *mlx_ptr, int (*funct_ptr)(), void *param );
 int mlx_put_image_to_window ( void *mlx_ptr, void *win_ptr, void *img_ptr, int x, int y );
-
   ```
 
 ## étape 3  : La Minimap
@@ -168,14 +167,11 @@ int mlx_put_image_to_window ( void *mlx_ptr, void *win_ptr, void *img_ptr, int x
 - Checker si le case sur laquelle je vais me déplacer est un mur ou pas (si == ‘0’) : si oui je peux me déplacer dessus, sinon non
 
 ### Comment faire ça avec les fonctions vues précédemment ? :
-A chaque fois la fonction qui imprime la minimap dans :
-  ```
-mlx_loop_hook();
-mlx_put_image_to_window
-  ```
-
-mlx_put_image_to_window : à mettre dans la fonction qui imprime la minimap qui loop !
-
+- Il faut mlx_init, mlx_new_window, et mlx_loop bien sur
+- Il faut mlx_hook qui tourne pour les key_press et les key_release qui permet de récupérer si une touche est appuyée ou non (voir étape 4)
+- Il faut mlx_get_data_addr pour récupérer l'adresse de l'image et écrire des pixels dedans
+- Il faut mlx_loop_hook avec à l'intérieur ta fonction qui imprime la minimap pour que dès qu'il y a une key press la minimap s'adapte
+- Il faut mlx_put_image_to_window
 
 ## étape 4  : Les keys 
 ### A faire :
@@ -187,7 +183,8 @@ mlx_put_image_to_window : à mettre dans la fonction qui imprime la minimap qui 
 - Appuyer sur A : déplace à gauche
 - Appuyer sur D : déplace à droite
 
-### Fonction à utiliser :
+### A utiliser :
+Tous les evenements ou masques sont dispo ici : https://harm-smits.github.io/42docs/libs/minilibx/events.html
   ```
 int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param);
   ```
@@ -215,6 +212,8 @@ Mac qwerty :
 - define BACK_S_S			1
 - define RIGHT_D_D			2
 - define LEFT_A_Q			0
+
+## étape 5  : Les raycasting
 
 
 # III - Les trucs utiles que j'ai appris
