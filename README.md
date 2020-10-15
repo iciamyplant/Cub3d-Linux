@@ -231,7 +231,21 @@ Je suis ensuite passée sur la doc de Lodev : https://lodev.org/cgtutor/raycasti
 Pour savoir si un rayon touche un mur on doit vérifier les points par lesquels passe le rayon dans la map. Pour optimiser, on va faire la vérification uniquement lorsqu'il atteint une intersection entre deux cases. Nous allons essayer de trouver chaque point d’intersection (A,B,C,D,E,F) entre la map et le rayon et vérifier si il s’agit d’un mur ou pas. La meilleure solution pour optimiser les calculs semble être de vérifier les intersections verticales et horizontales séparément
 
 ## étape 6  : Les textures
+L'idée est ici de récuperer la texture dans une image texture[0].img. Puis de récupérer la couleur d'un pixel à (texx;texy) dans cette image afin de mettre la même couleur dans notre image de base data.img. 
+
+Les textures doivent être au format xpm. Celles-ci seront récupérées grâce à la fonction mlx_xpm_file_to_image. 
 Penser à protéger sa fonction si le xpm est mauvais !
+```
+if (!(recup->texture[0].img = mlx_xpm_file_to_image(recup->data.mlx_ptr,
+	recup->no, &(recup->texture[0].width), &(recup->texture[0].height))))
+	ft_error(recup, "Texture SO\n");
+```
+L'objectif est de récupérer la couleur du pixel à (texx;texy) de la texture pour imprimer la même couleur dans notre image à (x;y). Il faudra récupérer l'adresse de cette image dans le pointeur texture[0].addr avec mlx_get_data_address, calculer texx et texy. 
+
+```
+texture[0].addr = (int *)mlx_get_data_addr(texture[0].img, &texture[0].bits_per_pixel, &texture[0].line_length, &texture[0].endian);
+data.addr[y * recup->data.line_length / 4 + x] = texture[0].addr[texy * texture[0].line_length / 4 + texx];
+```
 
 ## étape 7  : Les Sprites
 ## étape 8  : --save
@@ -307,7 +321,7 @@ https://www.commentcamarche.net/contents/1200-bmp-format-bmp
 - Debugger un bus error : **lldb ./executable** (attention, j’ai eu plusieurs fois bus error alors que c'était un segfault (Merci à lothieve)
 - Les segfaults : utiliser **-fsanitize=address** après tes flags dans ton Makefile. Si fsanitize n’affiche rien, tu n’as pas d’erreur.
 
-### Utils vim et terminql
+### Utils vim et terminal
 - vimrc
 - dd puis p pour coller
 - yy puis p
