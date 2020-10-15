@@ -30,7 +30,7 @@ Ce projet est inspiré du jeu Wolfenstein 3D. Mondialement connu, Wolfenstein 3D
 Ce projet permet d'explorer la technique du ray-casting. (Le lancer de rayons est une technique de rendu capable de créer une perspective tridimensionnelle à partir d'une carte bidimensionnelle).
 
 ### Appréhender le projet
-J'ai commencé par regarder cette vidéo pour avoir une petite idée du principe :[vidéo](https://www.youtube.com/watch?v=js7HW65MmNw&list=PL0H9-oZl_QOHM34HvD3DiGmwmj5X7GvTW) 
+J'ai commencé par regarder cette vidéo pour avoir une petite idée du principe : [video](https://www.youtube.com/watch?v=js7HW65MmNw&list=PL0H9-oZl_QOHM34HvD3DiGmwmj5X7GvTW) 
 
 # II - Comment ai-je fait Cub3d ? 11 étapes
 ## étape 1  : Le parsing
