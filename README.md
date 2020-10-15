@@ -114,8 +114,7 @@ mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
   ```
 
 ### Les événements (= quand on clique sur une touche par exemple) :
---> La Minilibx dispose en fait d'une fonction nommée "mlx_hook" permettant d'ajouter une fonction de gestion d'évènement à son code.
---> Tous les hooks de MiniLibX ne sont rien de plus qu'une fonction qui est appelée chaque fois qu'un événement est déclenché.
+--> La Minilibx dispose en fait d'une fonction nommée "mlx_hook" permettant d'ajouter une fonction de gestion d'évènement à son code. Tous les hooks de MiniLibX ne sont rien de plus qu'une fonction qui est appelée chaque fois qu'un événement est déclenché.
   ```
 int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param);
   ```
