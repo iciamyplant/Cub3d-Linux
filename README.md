@@ -328,6 +328,10 @@ https://www.rocq.inria.fr/secret/Anne.Canteaut/COURS_C/chapitre3.html
 - p = &i
 
 
-| Attempt | #1  | #2  |
-| :---:   | :-: | :-: |
-| Seconds | 301 | 283 |
+|         | #addr | #valeur  |
+| :---:   | :-:   | :-:      |
+| i       | 48310 | 3        |
+| :---:   | :-:   | :-:      |  
+| p       | 301   | 283      |
+| :---:   | :-:   | :-:      |
+| p*      | 301   | 3        |
