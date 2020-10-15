@@ -331,10 +331,8 @@ https://www.rocq.inria.fr/secret/Anne.Canteaut/COURS_C/chapitre3.html
 |          | addr  |  valeur  |
 |----------|-------|----------|
 | i        | 48310 | 3        | 
-|----------|-------|----------|
-| p       | 301   | 283      |
-| :---:   | :-:   | :-:      |
-| p*      | 301   | 3        |
+| p        | 301   | 283      |
+| p*       | 301   | 3        |
 
 
 | Attempt | #1  | #2  |
