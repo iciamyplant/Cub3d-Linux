@@ -80,7 +80,70 @@
  - gcc les .c avec libmlx.dylib
  - faire ./a.out
 
-### 
+### Ecrire les premiers pixels : 
+J'ai utilisé cette documentation au début : https://harm-smits.github.io/42docs/libs/minilibx/getting_started.html
+Toutes les fonctions sont ici : 
+D'abord tu commence par mlx_init
+  ```
+mlx = mlx_init();
+  ```
+Ensuite tu vas créer une fenêtre avec mlx_new_window
+  ```
+mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+  ```
+Enfin tu mets mlx_loop pour lancer le rendu de la fenêtre
+  ```
+mlx_loop(mlx);
+  ```
+- [x] : Tu verras une fenêtre qui s'appelle Hello World
+
+On va écrire nos premiers pixels directement dans la fenêtre avec mlx_pixel_put
+  ```
+mlx_pixel_put (void *mlx_ptr, void *win_ptr, int x, int y, int color );
+  ```
+    
+### Utiliser les images :
+Mais imprimer pixel par pixel dans la fenêtre c'est beaucoup trop long, donc on va utiliser des images.
+D'abord on crée notre image :
+  ```
+mlx_new_image(mlx, 1920, 1080);
+  ```
+Comment écrire exactement les pixels dans cette image ? On va récupérer l'adresse mémoire sur laquelle mettre nos pixels avec mlx_get_data_addr.
+  ```
+mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+  ```
+
+### Les événements (= quand on clique sur une touche par exemple) :
+--> La Minilibx dispose en fait d'une fonction nommée "mlx_hook" permettant d'ajouter une fonction de gestion d'évènement à son code.
+--> Tous les hooks de MiniLibX ne sont rien de plus qu'une fonction qui est appelée chaque fois qu'un événement est déclenché.
+  ```
+int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param);
+  ```
+--> ici mlx_hook appelle une fonction lorsque l'événement x_event au masque x_mask se déroule.
+ - x_event : le code de l'événement qu’on veut gérer (par exemple, 02: Appuyez sur la touche)
+ - x_mask : Le "masque" de l'évènement que l'on veut gérer, je vous laisse lire le manuel de X pour en savoir plus (par exemple, 1L<<0 c’est le KeyPressMask
+ - param: Un paramètre divers que vous pouvez passer à la fonction qui gère l'événement.
+ - funct : la fonction qu’on lance quand l'évènement se passe. Il y a différents types de fonctions (selon si c’est un mouvement de la souris, un keypress etc.) 
+
+### La fonction mlx_loop_hook
+
+
+## étape 3  : La Minimap
+### A faire :
+- Utiliser le parsing que j’ai fait dans mon char** map pour créer une minimap avec les 0, les 1 et les 2 chacun d'une couleur
+- Faire un pixel = 10 pixels pour qu’on voit correctement la minimap
+- Pouvoir faire bouger mon personnage avec les flèches dans la minimap (voir les keys à l'étape 4)
+- Checker si le case sur laquelle je vais me déplacer est un mur ou pas (si == ‘0’) : si oui je peux me déplacer dessus, sinon non
+
+### Comment faire ça avec les fonctions vues précédemment ? :
+A chaque fois la fonction qui imprime la minimap dans :
+  ```
+mlx_loop_hook();
+mlx_put_image_to_window
+  ```
+Documentation sur loop hook : https://gist.github.com/KokaKiwi/4052375
+mlx_put_image_to_window : à mettre dans la fonction qui imprime la minimap qui loop !
+
 
 ## étape 4  : Les keys 
 ### A faire :
@@ -92,6 +155,10 @@
 - Appuyer sur A : déplace à gauche
 - Appuyer sur D : déplace à droite
 
+### Fonction à utiliser :
+  ```
+int mlx_hook(void *win_ptr, int x_event, int x_mask, int (*funct)(), void *param);
+  ```
 ### Keycodes :
 Linux qwerty :
 - define ROTATE_LEFT	65361
