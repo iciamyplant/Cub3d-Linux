@@ -100,6 +100,7 @@ Linux qwerty :
 - define BACK_S_S		115
 - define RIGHT_D_D		100
 - define LEFT_A_Q		97
+
 Linux azerty :
 - define ROTATE_LEFT	65361
 - define ROTATE_RIGHT	65363
@@ -107,13 +108,14 @@ Linux azerty :
 - define BACK_S_S		115
 - define RIGHT_D_D		100
 - define LEFT_A_Q		113
+
 Mac qwerty :
-define ROTATE_LEFT		123
-define ROTATE_RIGHT		124
-define FORWARD_W_Z		13
-define BACK_S_S			1
-define RIGHT_D_D			2
-define LEFT_A_Q			0
+- define ROTATE_LEFT		123
+- define ROTATE_RIGHT		124
+- define FORWARD_W_Z		13
+- define BACK_S_S			1
+- define RIGHT_D_D			2
+- define LEFT_A_Q			0
 
 
 # III - Les trucs utiles que j'ai appris
