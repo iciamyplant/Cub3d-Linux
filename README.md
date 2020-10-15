@@ -122,9 +122,8 @@ mlx_new_image(mlx, 1920, 1080);
   ```
 Comment écrire exactement les pixels dans cette image ? On va récupérer l'adresse mémoire sur laquelle mettre nos pixels avec mlx_get_data_addr. Pour comprendre comment écrire des pixels dans une image je te conseille très fortement d'aller voir : https://github.com/keuhdall/images_example/blob/master/README.md. Ensuite tu vas pouvoir mettre tes pixels dans l'image. 
 - Formule pour char *addr :  X position * 4 + 4 * Line size * Y position. (Merci à grezette)
-- Formule pour int *addr : Y * ligne_length / 4 + X (Solution que j'ai choisi)
-
-  ```
+- Formule pour int *addr : Y * ligne_length / 4 + X. (Solution que j'ai choisi)
+```
 typedef struct		s_data
 {
 	void			*mlx_ptr;
@@ -138,7 +137,7 @@ typedef struct		s_data
  
 data.addr = (int *)mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
 data.addr[y * recup->data.line_length / 4 + x] = color;
-  ```
+```
 
 ### Les événements (= quand on clique sur une touche par exemple) :
 Documentation sur les hook : https://gist.github.com/KokaKiwi/4052375
