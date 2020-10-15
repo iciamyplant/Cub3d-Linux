@@ -25,7 +25,7 @@
 
 # II - Comment ai-je fait Cub3d ? 11 étapes
 ## étape 1  : Le parsing
-#### A faire :
+### A faire :
 - Parser dans un tableau de char à double entrée (il est également possible de parser dans un tableau de int, mais j’ai préféré la solution des chars).
 - Checker que la map soit entourée de murs
 - A chaque fois faire passer par la fonction qui vérifie que les caractères de la map sont bien des 0,1,2 
