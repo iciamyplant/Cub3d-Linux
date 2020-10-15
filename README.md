@@ -72,7 +72,48 @@
 - [x] : Il n’y a pas de map
 - [x] : Pas de joueur ou plusieurs joueurs
 
+## étape 2  : Minilibx
+### Installer la Minilibx :
+ - prendre le fichier .xvf sur l’intra
+ - faire tar -xvf le fichier
+ - copier le libmlx.dylib au niveau des fichiers
+ - gcc les .c avec libmlx.dylib
+ - faire ./a.out
+
+### 
+
+## étape 4  : Les keys 
+### A faire :
+- Appuyer sur escape et que ca quitte proprement (pour que ca quitte proprement utiliser exit(0))
+- Appuyer sur flèche de gauche : rotation gauche
+- Appuyer sur flèche de droite : rotation droite
+- Appuyer sur W : avance
+- Appuyer sur S : recule
+- Appuyer sur A : déplace à gauche
+- Appuyer sur D : déplace à droite
+
+### Keycodes :
+- Linux qwerty :
+define ROTATE_LEFT	65361
+define ROTATE_RIGHT	65363
+define FORWARD_W_Z	119
+define BACK_S_S		115
+define RIGHT_D_D		100
+define LEFT_A_Q		97
+- Linux azerty :
+define ROTATE_LEFT	65361
+define ROTATE_RIGHT	65363
+define FORWARD_W_Z	122
+define BACK_S_S		115
+define RIGHT_D_D		100
+define LEFT_A_Q		113
+- Mac qwerty :
+define ROTATE_LEFT		123
+define ROTATE_RIGHT		124
+define FORWARD_W_Z		13
+define BACK_S_S			1
+define RIGHT_D_D			2
+define LEFT_A_Q			0
 
 
-## étape 2  : Comprendre la minilibx et imprimer des carrés et des triangles
 # III - Les trucs utiles que j'ai appris
