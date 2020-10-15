@@ -323,9 +323,10 @@ https://www.commentcamarche.net/contents/1200-bmp-format-bmp
 ### Rappels sur les pointeurs
 https://www.rocq.inria.fr/secret/Anne.Canteaut/COURS_C/chapitre3.html
 
-int *p;
-int i;
-p = &i
+- int *p;
+- int i;
+- p = &i
+
   | addre | valeur | 
 --- | --- | --- | 
 i | 48310 | 3 |
