@@ -226,7 +226,7 @@ le principe de base est le suivant :
 ### La pratique :
 Je suis ensuite passée sur la doc de Lodev : https://lodev.org/cgtutor/raycasting.html. Après les tutos en javascript et les tentatives de faire le raycasting seule j'ai pu bien comprendre la doc de Lodev. Avant de commencer Lodev, je te conseille de regarder cette vidéo sur les vecteurs : https://www.youtube.com/watch?v=gID_FKfncZI.
 
-1. Rôle des variables utilisées par Lodev :
+##### 1. Rôle des variables utilisées par Lodev :
 ```
 typedef struct	s_ray
 {
@@ -256,7 +256,7 @@ typedef struct	s_ray
 	int		x; //permet de parcourir tous les rayons
 }					t_ray;
 ```
-2. Calculs
+##### 2. Calculs
 Pour chaque rayon ray.x on va :
 - Calculer stepx, stepy, sidedistx et sidedisty
 - Incrémenter tant qu'on a pas touche un mur : on passe au carre suivant soit dans la direction x soit direction y
@@ -266,16 +266,16 @@ Ici il faut savoir que l'on va d'abord jusqu'au premier point d'intersection en 
 abs = valeur absolue d’un nombre cad sans prendre en compte son signe.
 sqrt = racine d’un nombre, racine de 9 = 3, car 3 au carré est égal à 9.
 
-3. Imprimer la colonne de pixels
+##### 3. Imprimer la colonne de pixels
 
-4. Adapter posx et posy aux mouvements droite gauche, avancer reculer
+##### 4. Adapter posx et posy aux mouvements droite gauche, avancer reculer
 - ft_forward_back(recup);
 - ft_left_right(recup);
 
-5. Adapter dirx, diry et planx, plany aux rotations droite et gauche
+##### 5. Adapter dirx, diry et planx, plany aux rotations droite et gauche
 - ft_rotate_right_left(recup);
 
-6. Si ca lagge, swapper entre deux images
+##### 6. Si ca lagge, swapper entre deux images
 C'est à dire swapper data.img et data.img2, data.addr et data.addr2
 
 ## étape 6  : Les textures
