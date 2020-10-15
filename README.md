@@ -325,13 +325,55 @@ Super doc sur les pointeurs : https://www.rocq.inria.fr/secret/Anne.Canteaut/COU
 
 - int *p;
 - int i;
-- p = &i
+- p = &i;
+--> ici si on écrit *p = 0; on change la valeur de i
 
 
 |          | addr  |  valeur  |
 |----------|-------|----------|
 | i        | 48310 | 3        | 
-| p        | 48308   | 48310    |
-| p*       | 48310  | 3        |
+| p        | 48308 | 48310    |
+| p*       | 48310 | 3        |
 
+- int *p1;
+- int *p2;
+- int i = 3;
+- int j = 6;
+- p1 = &i;
+- p2 = &j;
+- *p1 = *p2;
+
+
+|          | addr  |  valeur  |
+|----------|-------|----------|
+| i        | 48310 | 6        | 
+| j        | 48312 | 6        |
+| p1       | 48308 | 48310    |
+| p2       | 48305 | 48312    |
+
+- int *p1;
+- int *p2;
+- int i = 3;
+- int j = 6;
+- p1 = &i;
+- p2 = &j;
+- p1 = p2;
+
+
+|          | addr  |  valeur  |
+|----------|-------|----------|
+| i        | 48310 | 3        | 
+| j        | 48312 | 6        |
+| p1       | 48308 | 48312    |
+| p2       | 48305 | 48312    |
+
+- int *p;
+- p = malloc(sizeof(int));
+
+
+|          | addr  |  valeur  |
+|----------|-------|----------|
+| i        | 48310 | 3        | 
+| p        | 48308 | 5368     |
+| *p       | 53608 | ?int     |
 
