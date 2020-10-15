@@ -321,7 +321,7 @@ https://www.commentcamarche.net/contents/1200-bmp-format-bmp
 - git checkout *nombranche* = basculer sur une branche déjà existante
 
 ### Rappels sur les pointeurs
-https://www.rocq.inria.fr/secret/Anne.Canteaut/COURS_C/chapitre3.html
+Super doc sur les pointeurs : https://www.rocq.inria.fr/secret/Anne.Canteaut/COURS_C/chapitre3.html
 
 - int *p;
 - int i;
@@ -331,10 +331,7 @@ https://www.rocq.inria.fr/secret/Anne.Canteaut/COURS_C/chapitre3.html
 |          | addr  |  valeur  |
 |----------|-------|----------|
 | i        | 48310 | 3        | 
-| p        | 301   | 283      |
-| p*       | 301   | 3        |
+| p        | 48308   | 48310    |
+| p*       | 48310  | 3        |
 
 
-| Attempt | #1  | #2  |
-| :---:   | :-: | :-: |
-| Seconds | 301 | 283 |
