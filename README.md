@@ -323,6 +323,9 @@ https://www.commentcamarche.net/contents/1200-bmp-format-bmp
 ### Rappels sur les pointeurs
 https://www.rocq.inria.fr/secret/Anne.Canteaut/COURS_C/chapitre3.html
 
-Attempt | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10 | #11
+int *p;
+int i;
+p = &i
+addr | #1 | #2 | #3 | #4 | #5 | #6 | #7 | #8 | #9 | #10 | #11
 --- | --- | --- | --- |--- |--- |--- |--- |--- |--- |--- |---
 Seconds | 301 | 283 | 290 | 286 | 289 | 285 | 287 | 287 | 272 | 276 | 269
