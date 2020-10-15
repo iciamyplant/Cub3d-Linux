@@ -1,6 +1,6 @@
 ### Plan :
 #### I - Qu'est ce que Cub3d ?
- - Le sujet
+**- Le sujet**
  - Le raycasting dans la théorie
 #### II - Comment ai-je fait Cub3d ?
  - étape 1  : Parser le fichier .cub
