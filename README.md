@@ -2,22 +2,20 @@
 #### I - Qu'est ce que Cub3d ?
  - Le sujet
  - Le raycasting dans la théorie
-
-II - Comment ai-je fait Cub3d ?
-Parser le fichier .cub
-Comprendre la minilibx et imprimer des carrés et des triangles
-Créer la minimap pour apprendre à utiliser la Minilibx
-Savoir récupérer les keys et les utiliser dans la minimap
-Le raycasting sans textures dans la pratique
-La couleur du sol et du plafond
-Ajouter les textures
-Les Sprites
---save
-Les derniers petits éléments
-Les leaks
-
-III - Les trucs utiles que j'ai appris
-Techniques de débogage
-VIM
-Git
+#### II - Comment ai-je fait Cub3d ?
+ - étape 1  : Parser le fichier .cub
+ - étape 2  : Comprendre la minilibx et imprimer des carrés et des triangles
+ - étape 3  : Créer la minimap pour apprendre à utiliser la Minilibx
+ - étape 4  : Savoir récupérer les keys et les utiliser dans la minimap
+ - étape 5  : Le raycasting sans textures dans la pratique
+ - étape 6  : La couleur du sol et du plafond
+ - étape 7  : Ajouter les textures
+ - étape 8  : Les Sprites
+ - étape 9  : --save
+ - étape 10 : Les derniers petits éléments
+ - étape 11 : Les leaks
+#### III - Les trucs utiles que j'ai appris
+ - Techniques de débogage
+ - VIM
+ - Git
 
