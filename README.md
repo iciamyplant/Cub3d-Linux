@@ -220,17 +220,66 @@ Je ne sais pas si c'est la meilleure technique mais j'ai commencé par suivre de
 
 le principe de base est le suivant :
 - j’envoie des rayon de gauche à droite depuis la position du joueur. Sachant que au lieu de lancer un rayon pour chaque pixel nous allons lancer un rayon par colonne. On lance autant de rayons que rx (résolution x).
-- plus le rayon met du temps à atteindre le mur, plus il est loin.
-- plus il est loin plus la colonne de pixels est petite.
+- plus le rayon met du temps à atteindre le mur, plus il est loin. Les tutos sont très bien pour comprendre comment on vérifie que le rayon a atteint un mur, et donc comment on calcule la distance du joueur au mur pour chaque rayon.
+- plus la distance au mur est grande plus la colonne de pixels est petite.
 
 ### La pratique :
 Je suis ensuite passée sur la doc de Lodev : https://lodev.org/cgtutor/raycasting.html. Après les tutos en javascript et les tentatives de faire le raycasting seule j'ai pu bien comprendre la doc de Lodev. Avant de commencer Lodev, je te conseille de regarder cette vidéo sur les vecteurs : https://www.youtube.com/watch?v=gID_FKfncZI.
 
+1. Rôle des variables utilisées par Lodev :
+```
+typedef struct	s_ray
+{
+	double		posx; //position x du joueur
+	double		posy; //position y du joueur
+	double		dirx; //vecteur de direction (commence à -1 pour N, 1 pour S, 0 sinon)
+	double		diry; //vecteur de direction (commence à -1 pour W, 1 pour E, 0 sinon)
+	double		planx; //vecteur du plan (commence à 0.66 pour E, -0.66 pour W, 0 sinon)
+	double		plany; //vecteur du plan (commence à 0.66 pour N, -0.66 pour S, 0 sinon)
+	double		raydirx; //calcul de direction x du rayon
+	double		raydiry; //calcul de direction y du rayon
+	double		camerax; //point x sur la plan camera : Gauche ecran = -1, milieu = 0, droite = 1
+	int		mapx; // coordonée x du carré dans lequel est pos
+	int		mapy; // coordonnée y du carré dans lequel est pos
+	double		sidedistx; //distance que le rayon parcours jusqu'au premier point d'intersection vertical (=un coté x)
+	double		sidedisty; //distance que le rayon parcours jusqu'au premier point d'intersection horizontal (= un coté y)
+	double		deltadistx; //distance que rayon parcours entre chaque point d'intersection vertical
+	double		deltadisty; //distance que le rayon parcours entre chaque point d'intersection horizontal
+	int		stepx; // -1 si doit sauter un carre dans direction x negative, 1 dans la direction x positive
+	int		stepy; // -1 si doit sauter un carre dans la direction y negative, 1 dans la direction y positive
+	int		hit; // 1 si un mur a ete touche, 0 sinon
+	int		side; // 0 si c'est un cote x qui est touche (vertical), 1 si un cote y (horizontal)
+	double		perpwalldist; // distance du joueur au mur
+	int		lineheight; //hauteur de la ligne a dessiner
+	int		drawstart; //position de debut ou il faut dessiner
+	int		drawend; //position de fin ou il faut dessiner
+	int		x; //permet de parcourir tous les rayons
+}					t_ray;
+```
+2. Calculs
+Pour chaque rayon ray.x on va :
+- Calculer stepx, stepy, sidedistx et sidedisty
+- Incrémenter tant qu'on a pas touche un mur : on passe au carre suivant soit dans la direction x soit direction y
+Ici il faut savoir que l'on va d'abord jusqu'au premier point d'intersection en parcourant une distance sidedistx et sidedisty. Puis on incrémente toujours de la même valeur : deltadistx et deltadisty
+- On calcule perpwalldist pour avoir lineheight, puis drawstart et drawend
 
-- détecter les murs :
-Pour savoir si un rayon touche un mur on doit vérifier les points par lesquels passe le rayon dans la map. Pour optimiser, on va faire la vérification uniquement lorsqu'il atteint une intersection entre deux cases. Nous allons essayer de trouver chaque point d’intersection (A,B,C,D,E,F) entre la map et le rayon et vérifier si il s’agit d’un mur ou pas. La meilleure solution pour optimiser les calculs semble être de vérifier les intersections verticales et horizontales séparément
+abs = valeur absolue d’un nombre cad sans prendre en compte son signe.
+sqrt = racine d’un nombre, racine de 9 = 3, car 3 au carré est égal à 9.
+
+3. Imprimer la colonne de pixels
+
+4. Adapter posx et posy aux mouvements droite gauche, avancer reculer
+- ft_forward_back(recup);
+- ft_left_right(recup);
+
+5. Adapter dirx, diry et planx, plany aux rotations droite et gauche
+- ft_rotate_right_left(recup);
+
+6. Si ca lagge, swapper entre deux images
+C'est à dire swapper data.img et data.img2, data.addr et data.addr2
 
 ## étape 6  : Les textures
+### Principe :
 L'idée est ici de récuperer la texture dans une image texture[0].img. Puis de récupérer la couleur d'un pixel à (texx;texy) dans cette image afin de mettre la même couleur dans notre image de base data.img. 
 
 Les textures doivent être au format xpm. Celles-ci seront récupérées grâce à la fonction mlx_xpm_file_to_image. 
@@ -245,6 +294,15 @@ L'objectif est de récupérer la couleur du pixel à (texx;texy) de la texture p
 ```
 texture[0].addr = (int *)mlx_get_data_addr(texture[0].img, &texture[0].bits_per_pixel, &texture[0].line_length, &texture[0].endian);
 data.addr[y * recup->data.line_length / 4 + x] = texture[0].addr[texy * texture[0].line_length / 4 + texx];
+```
+### Rôle de mes variables :
+```
+	int		texdir; //direction NO, S, EA, WE de la texture
+	double		wallx; // valeur où le mur a été touché : coordonnée y si side == 0, coordonnée x si side == 1
+	int		texx; // coordonnée x de la texture
+	int		texy; // coordonée y de la texture
+	double		step; // indique de combien augmenter les coordonnées de la texture pour chaque pixel
+	double		texpos; // coordonnée de départ
 ```
 
 ## étape 7  : Les Sprites
@@ -314,6 +372,9 @@ https://www.commentcamarche.net/contents/1200-bmp-format-bmp
 - Il y a une erreur
 - Il y a le --save
 - Si y a une erreur de malloc dans une ligne de la map : il faut pouvoir free les autres lignes
+
+
+
 
 
 # III - Les trucs utiles que j'ai appris
