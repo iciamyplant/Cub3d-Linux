@@ -1,3 +1,8 @@
+### Lancement :
+  ```
+make && ./Cub3d map.cub
+  ```
+
 ### Plan :
 #### I - Qu'est ce que Cub3d ?
  - Le sujet
