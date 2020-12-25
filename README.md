@@ -7,7 +7,7 @@ make && ./Cub3d map.cub
 #### I - Qu'est ce que Cub3d ?
  - Le sujet
  - Appréhender le projet
-#### II - Comment ai-je fait Cub3d ? 11 étapes
+#### II - Comment ai-je fait Cub3d ? 10 étapes
  - étape 1  : Parser le fichier .cub
  - étape 2  : Comprendre la minilibx et imprimer des carrés et des triangles
  - étape 3  : Créer la minimap pour apprendre à utiliser la Minilibx
@@ -37,7 +37,7 @@ Ce projet permet d'explorer la technique du ray-casting. (Le lancer de rayons es
 ### Appréhender le projet
 J'ai commencé par regarder cette vidéo pour avoir une petite idée du principe : [video](https://www.youtube.com/watch?v=js7HW65MmNw&list=PL0H9-oZl_QOHM34HvD3DiGmwmj5X7GvTW) 
 
-# II - Comment ai-je fait Cub3d ? 11 étapes
+# II - Comment ai-je fait Cub3d ? 10 étapes
 ## étape 1  : Le parsing
 ### A faire :
 - Parser dans un tableau de char à double entrée (il est également possible de parser dans un tableau de int, mais j’ai préféré la solution des chars).
