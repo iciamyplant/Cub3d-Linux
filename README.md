@@ -35,7 +35,7 @@ Ce projet est inspiré du jeu Wolfenstein 3D. Mondialement connu, Wolfenstein 3D
 Ce projet permet d'explorer la technique du ray-casting. (Le lancer de rayons est une technique de rendu capable de créer une perspective tridimensionnelle à partir d'une carte bidimensionnelle).
 
 ### Appréhender le projet
-J'ai commencé par regarder cette vidéo pour avoir une petite idée du principe // tuto plus dispo) 
+J'ai commencé par regarder cette vidéo pour avoir une petite idée du principe : [video](https://www.youtube.com/watch?v=js7HW65MmNw&list=PL0H9-oZl_QOHM34HvD3DiGmwmj5X7GvTW) 
 
 # II - Comment ai-je fait Cub3d ? 10 étapes
 ## étape 1  : Le parsing
@@ -229,7 +229,7 @@ Mac qwerty :
 
 ## étape 5  : Le raycasting
 ### La théorie :
-Je ne sais pas si c'est la meilleure technique mais j'ai commencé par suivre des tutos en javascript : https://courses.pikuma.com/courses/take/raycasting/lessons/15903104-an-overview-of-the-raycasting-algorithm. Ca prend du temps, mais ça s'est avéré utile par la suite. Ces tutos font des rappels de maths et expliquent de façon claire ce qu'on va faire. 
+Je ne sais pas si c'est la meilleure technique mais j'ai commencé par suivre des tutos en javascript//tuto plus dispo . Ca prend du temps, mais ça s'est avéré utile par la suite. Ces tutos font des rappels de maths et expliquent de façon claire ce qu'on va faire. 
 
 le principe de base est le suivant :
 - j’envoie des rayon de gauche à droite depuis la position du joueur. Sachant que au lieu de lancer un rayon pour chaque pixel nous allons lancer un rayon par colonne. On lance autant de rayons que rx (résolution x).
